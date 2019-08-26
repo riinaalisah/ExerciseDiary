@@ -13,8 +13,7 @@ class LoadDatabase {
   @Bean
   CommandLineRunner initDatabase(ExerciseRepository repo) {
     return args -> {
-      log.info("Preloading " + repo.save(new Exercise("Bodycombat", 14)));
-      log.info("Preloading " + repo.save(new Exercise("Bodypump", 11)));
+      log.info("All: " + repo.findAll());
     };
   }
 }

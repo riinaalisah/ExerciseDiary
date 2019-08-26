@@ -2,15 +2,14 @@ package exercisediary;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
 
 @Data
-@Entity
+@Document(collection = "exercises")
 class Exercise {
 
-  private @Id @GeneratedValue Long id;
+  private @Id String id;
   private String name;
   private int calsPerMinute;
 
