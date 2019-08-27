@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const WorkoutList = (props) => {
   if (!props.workouts) {
@@ -18,7 +19,11 @@ const WorkoutList = (props) => {
           </tr>
           {props.workouts.map(w => 
             <tr key={w.id}>
-              <td>{w.type}</td>
+              <td>
+                <Link style={{ padding: 5 }} to={`/workouts/${w.id}`}>
+                  {w.type}
+                </Link>
+              </td>
               <td>{w.date.substring(0, 10)}</td>
               <td>{w.duration}min</td>
             </tr>)}

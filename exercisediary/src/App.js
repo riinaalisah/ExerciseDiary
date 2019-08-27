@@ -11,6 +11,7 @@ import Exercise from './components/Exercise';
 import Date from './components/Date'
 import WorkoutList from './components/WorkoutList';
 import WorkoutForm from './components/WorkoutForm';
+import Workout from './components/Workout';
 
 const App = (props) => {
 
@@ -21,6 +22,9 @@ const App = (props) => {
 
   const exerciseById = (id) => 
     props.exercises.find(e => e.id === id)
+
+  const workoutById = (id) =>
+    props.workouts.find(w => w.id === id)
   
   return (
     <div>
@@ -42,6 +46,9 @@ const App = (props) => {
           } />
           <Route exact path='/workouts' render={() => <WorkoutList /> } />
           <Route exact path='/workouts/new' render={() => <WorkoutForm /> } />
+          <Route exact path='/workouts/:id' render={({ match }) =>
+            <Workout workout={workoutById(match.params.id)} />
+          } />
         </div>
 
       </Router>
@@ -51,7 +58,8 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    exercises: state.exercises
+    exercises: state.exercises,
+    workouts: state.workouts
   }
 }
 

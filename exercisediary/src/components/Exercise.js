@@ -2,7 +2,7 @@ import React from 'react'
 
 const Exercise = ({ exercise }) => {
   if (!exercise) {
-    return null;
+    return null
   }
 
   return (
