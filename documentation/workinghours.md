@@ -9,6 +9,6 @@
 | 26.8. | 5,5 | CRUD for workouts |
 | 27.8. | 5 | add info for gym workout, user stuff |
 | 2.9. | 3,5 | user stuff |
-| 3.9. |  |  more user stuff |
-| | | |
-| total | 
+| 3.9. | 5 |  more user stuff |
+| 5.9. | 1,5 | more user stuff, first somehow working version |
+| total | 30,5 |    |
