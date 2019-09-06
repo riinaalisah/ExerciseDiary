@@ -11,4 +11,5 @@
 | 2.9. | 3,5 | user stuff |
 | 3.9. | 5 |  more user stuff |
 | 5.9. | 2,5 | more user stuff, first somehow working version |
-| total | 31,5 |    |
+| 6.9. | 1 | registration and login stuff, they work! |
+| total | 32,5 |    |
