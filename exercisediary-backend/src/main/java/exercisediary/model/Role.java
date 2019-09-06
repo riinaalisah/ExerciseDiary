@@ -2,10 +2,7 @@ package exercisediary.model;
 
 import lombok.Data;
 
-import java.util.Set;
-
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.annotation.Id;
 
 @Data
@@ -13,13 +10,11 @@ import org.springframework.data.annotation.Id;
 public class Role {
   @Id
   private String id;
-  private String name;
-  @DBRef
-  private Set<User> users;
+  private String role;
 
   Role() {}
 
-  Role(String name) {
-    this.name = name;
+  Role(String role) {
+    this.role = role;
   }
 }

@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     var username = request.getParameter("username");
     var password = request.getParameter("password");
     var authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-
+    
     return authenticationManager.authenticate(authenticationToken);
   } 
 

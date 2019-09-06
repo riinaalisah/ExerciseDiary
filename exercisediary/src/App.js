@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom
 
 import { initializeExercises } from './reducers/exerciseReducer'
 import { initializeWorkouts } from './reducers/workoutReducer'
+import { setUser } from './reducers/userReducer'
 
 import ExerciseList from './components/ExerciseList'
 import ExerciseForm from './components/ExerciseForm'
@@ -17,7 +18,6 @@ import RegistrationForm from './components/RegistrationForm'
 import loginService from './services/login'
 
 const App = (props) => {
-  const [user, setUser] = useState(null)
 
   useEffect(() => {
     props.initializeExercises()
@@ -25,11 +25,11 @@ const App = (props) => {
   }, [])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedInUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      loginService.setToken(user.token)
+    const loggedUser = window.localStorage.getItem('loggedInUser')
+    if (loggedUser) {
+      props.setUser(loggedUser)
+      loginService.setToken(loggedUser.token)
+      console.log('logged in', loggedUser)
     }
   })
 
@@ -39,7 +39,7 @@ const App = (props) => {
   const workoutById = (id) =>
     props.workouts.find(w => w.id === id)
 
-  console.log('logged in', user)
+  
   
   return (
     <div>
@@ -78,14 +78,16 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     exercises: state.exercises,
-    workouts: state.workouts
+    workouts: state.workouts,
+    user: state.user
   }
 }
 
 export default connect(
   mapStateToProps,
   { initializeExercises,
-  initializeWorkouts })(App)
+  initializeWorkouts,
+  setUser })(App)
 
 
 /*

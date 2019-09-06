@@ -6,6 +6,7 @@ exercisediary/exception/GymSetNotFoundAdvice.class
 exercisediary/exception/UserNotFoundException.class
 exercisediary/exception/UserNotFoundAdvice.class
 exercisediary/exception/GymSetNotFoundException.class
+exercisediary/service/UserService.class
 exercisediary/repository/RoleRepository.class
 exercisediary/repository/WorkoutRepository.class
 exercisediary/config/JwtAuthorizationFilter.class
@@ -13,6 +14,7 @@ exercisediary/controller/WorkoutController.class
 exercisediary/model/Role.class
 exercisediary/controller/ExerciseController.class
 exercisediary/repository/UserRepository.class
+exercisediary/service/CustomUserService.class
 exercisediary/ExerciseDiaryApplication.class
 exercisediary/model/GymSet.class
 exercisediary/controller/UserController.class

@@ -10,10 +10,8 @@
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/controller/UserController.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/repository/ExerciseRepository.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/model/Role.java
-/home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/service/CustomUserDetailsService.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/config/JwtAuthorizationFilter.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/model/Workout.java
-/home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/controller/AuthenticationController.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/exception/WorkoutNotFoundException.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/controller/WorkoutController.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/config/JwtAuthenticationFilter.java
@@ -22,10 +20,8 @@
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/model/GymSet.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/service/UserService.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/exception/GymSetNotFoundAdvice.java
-/home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/service/SecurityService.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/controller/GymSetController.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/exception/ExerciseNotFoundException.java
-/home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/service/CustomSecurityService.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/repository/WorkoutRepository.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/config/SecurityConfig.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/exception/WorkoutNotFoundAdvice.java

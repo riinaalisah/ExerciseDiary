@@ -2,7 +2,8 @@ package exercisediary.model;
 
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
@@ -10,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 
 @Data
 @Document(collection = "users")
+
 public class User {
   private @Id String id;
   private String username;
@@ -17,7 +19,7 @@ public class User {
   private String lastName;
   private String password;
   @DBRef
-  private Set<Role> roles;
+  private List<Role> roles;
 
   User() {}
 
@@ -26,5 +28,6 @@ public class User {
     this.firstName = firstName;
     this.lastName = lastName;
     this.password = password;
+    this.roles = new ArrayList<>();
   }
 }

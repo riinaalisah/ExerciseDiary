@@ -9,15 +9,11 @@ const LoginForm = () => {
   const login = async (event) => {
     event.preventDefault()
     try {
-      const user = await loginService.login({
-        username: username.value,
-        password: password.value
-      })
+      await loginService.login(username.value, password.value)
 
-      console.log('LOGGED IN USER: ', user)
+      console.log('LOGGED IN USER: ', username.value)
 
-      window.localStorage.setItem('loggedInUser', JSON.stringify(user))
-      loginService.setToken(user.token)
+      window.localStorage.setItem('loggedInUser', username.value)
     } catch (exception) {
       console.log('ERROR', exception.message)
     }

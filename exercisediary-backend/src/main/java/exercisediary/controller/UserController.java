@@ -1,7 +1,9 @@
 package exercisediary.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import exercisediary.repository.RoleRepository;
 import exercisediary.repository.UserRepository;
 import exercisediary.model.User;
 import exercisediary.exception.UserNotFoundException;
@@ -23,13 +25,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 class UserController {
   
   @Autowired
-  private UserRepository repo;
+  private UserRepository userRepo;
+
+  @Autowired
+  private RoleRepository roleRepo;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-  UserController(UserRepository repo) {
-    this.repo = repo;
+  UserController(UserRepository userRepo) {
+    this.userRepo = userRepo;
     this.passwordEncoder = new BCryptPasswordEncoder();
   }
 
@@ -37,43 +42,44 @@ class UserController {
 
   @GetMapping("/api/users")
   List<User> allUsers() {
-    return repo.findAll();
+    return userRepo.findAll();
   }
 
   @PostMapping("/api/users")
   User newUser(@RequestBody User newUser) {
     newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-    System.out.println(newUser);
-    return repo.save(newUser);
+    newUser.setRoles(new ArrayList<>());
+    newUser.getRoles().add(roleRepo.findByRole("USER"));
+    return userRepo.save(newUser);
   }
 
   // Single item
 
   @GetMapping("/api/users/{id}")
   User oneUser(@PathVariable String id) {
-    return repo.findById(id)
+    return userRepo.findById(id)
       .orElseThrow(() -> new UserNotFoundException(id));
   }
 
   @PutMapping("/api/users/{id}")
   User replaceUser(@RequestBody User newUser, @PathVariable String id) {
 
-    return repo.findById(id)
+    return userRepo.findById(id)
       .map(user -> {
         user.setUsername(newUser.getUsername());
         user.setFirstName(newUser.getFirstName());
         user.setLastName(newUser.getLastName());
         user.setPassword(newUser.getPassword());
-        return repo.save(user);
+        return userRepo.save(user);
       })
       .orElseGet(() -> {
         newUser.setId(id);
-        return repo.save(newUser);
+        return userRepo.save(newUser);
       });
   }
 
   @DeleteMapping("/api/users/{id}")
   void deleteUser(@PathVariable String id) {
-    repo.deleteById(id);
+    userRepo.deleteById(id);
   } 
 }
