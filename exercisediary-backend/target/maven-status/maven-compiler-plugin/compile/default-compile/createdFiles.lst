@@ -15,6 +15,7 @@ exercisediary/model/Role.class
 exercisediary/controller/ExerciseController.class
 exercisediary/repository/UserRepository.class
 exercisediary/service/CustomUserService.class
+exercisediary/controller/SecurityController.class
 exercisediary/ExerciseDiaryApplication.class
 exercisediary/model/GymSet.class
 exercisediary/controller/UserController.class

@@ -25,23 +25,23 @@ class GymSetController {
     this.repo = repo;
   }
 
-  @GetMapping("/api/gymsets")
+  @GetMapping("/gymsets")
   List<GymSet> allGymSets() {
     return repo.findAll();
   }
 
-  @PostMapping("/api/gymsets")
+  @PostMapping("/gymsets")
   GymSet newGymSet(@RequestBody GymSet newGymSet) {
     return repo.save(newGymSet);
   }
 
-  @GetMapping("/api/gymsets/{id}")
+  @GetMapping("/gymsets/{id}")
   GymSet oneGymSet(@PathVariable String id) {
     return repo.findById(id)
       .orElseThrow(() -> new GymSetNotFoundException(id));
   }
 
-  @PutMapping("/api/gymsets/{id}")
+  @PutMapping("/gymsets/{id}")
   GymSet replaceGymSet(@RequestBody GymSet newGymSet, @PathVariable String id) {
 
     return repo.findById(id) 
@@ -58,7 +58,7 @@ class GymSetController {
       });
   }
 
-  @DeleteMapping("/api/gymsets/{id}")
+  @DeleteMapping("/gymsets/{id}")
   void deleteGymSet(@PathVariable String id) {
     repo.deleteById(id);
   }

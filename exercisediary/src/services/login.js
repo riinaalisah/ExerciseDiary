@@ -1,22 +1,11 @@
 import axios from 'axios'
-const baseUrl = '/api/authenticate'
-
-let token = null
-
-const setToken = (newToken) => {
-  token = newToken
-}
-
-const getToken = () => {
-  return token
-}
+const baseUrl = '/authenticate'
 
 const login = async (username, password) => {
   const url = `${baseUrl}?username=${username}&password=${password}`
   const response = await axios.post(url)
-  setToken(response.headers.authorization)
-  //return response.data
+  return response.headers.authorization
 }
 
-export default { login, setToken, getToken }
+export default { login }
 

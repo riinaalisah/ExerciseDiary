@@ -27,25 +27,25 @@ class ExerciseController {
 
   // Aggregate root
 
-  @GetMapping("/api/exercises")
+  @GetMapping("/exercises")
   List<Exercise> allExercises() {
     return repo.findAll();
   }
 
-  @PostMapping("/api/exercises")
+  @PostMapping("/exercises")
   Exercise newExercise(@RequestBody Exercise newExercise) {
     return repo.save(newExercise);
   }
 
   // Single item
 
-  @GetMapping("/api/exercises/{id}")
+  @GetMapping("/exercises/{id}")
   Exercise oneExercise(@PathVariable String id) {
     return repo.findById(id)
       .orElseThrow(() -> new ExerciseNotFoundException(id));
   }
 
-  @PutMapping("/api/exercises/{id}")
+  @PutMapping("/exercises/{id}")
   Exercise replaceExercise(@RequestBody Exercise newExercise, @PathVariable String id) {
 
     return repo.findById(id)
@@ -60,7 +60,7 @@ class ExerciseController {
       });
   }
 
-  @DeleteMapping("/api/exercises/{id}")
+  @DeleteMapping("/exercises/{id}")
   void deleteExercise(@PathVariable String id) {
     repo.deleteById(id);
   }  

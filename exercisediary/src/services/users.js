@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/users'
+const baseUrl = '/users'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
@@ -11,6 +11,7 @@ const getOne = async (id) => {
   return response.data
 }
 
+// is this needed?
 const create = async (newObject) => {
   const response = await axios.post(baseUrl, newObject)
   console.log(response.data)

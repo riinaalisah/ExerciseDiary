@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { useField } from '../hooks/useField'
-import { addUser } from '../reducers/userReducer'
+import registrationService from '../services/register'
 
 const RegistrationForm = (props) => {
   const username = useField('text')
@@ -9,7 +8,7 @@ const RegistrationForm = (props) => {
   const lastName = useField('text')
   const password = useField('password')
 
-  const add = (event) => {
+  const add = async (event) => {
     event.preventDefault()
     const newUser = {
       username: username.value,
@@ -17,8 +16,8 @@ const RegistrationForm = (props) => {
       lastName: lastName.value,
       password: password.value
     }
-    console.log(newUser)
-    props.addUser(newUser)
+    await registrationService.create(newUser)
+    props.setUser(newUser)
   }
 
   return (
@@ -64,4 +63,4 @@ const RegistrationForm = (props) => {
 
 }
 
-export default connect(null, { addUser })(RegistrationForm)
+export default RegistrationForm

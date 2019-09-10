@@ -25,23 +25,23 @@ class WorkoutController {
     this.repo = repo;
   }
 
-  @GetMapping("/api/workouts")
+  @GetMapping("/workouts")
   List<Workout> allWorkouts() {
     return repo.findAll();
   }
 
-  @PostMapping("/api/workouts")
+  @PostMapping("/workouts")
   Workout newWorkout(@RequestBody Workout newWorkout) {
     return repo.save(newWorkout);
   }
 
-  @GetMapping("/api/workouts/{id}")
+  @GetMapping("/workouts/{id}")
   Workout oneWorkout(@PathVariable String id) {
     return repo.findById(id)
       .orElseThrow(() -> new WorkoutNotFoundException(id));
   }
 
-  @PutMapping("/api/workouts/{id}")
+  @PutMapping("/workouts/{id}")
   Workout replaceWorkout(@RequestBody Workout newWorkout, @PathVariable String id) {
 
     return repo.findById(id) 
@@ -56,7 +56,7 @@ class WorkoutController {
       });
   }
 
-  @DeleteMapping("/api/workouts/{id}")
+  @DeleteMapping("/workouts/{id}")
   void deleteWorkout(@PathVariable String id) {
     repo.deleteById(id);
   }

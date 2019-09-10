@@ -1,28 +1,13 @@
 import React from 'react'
-import { useField } from '../hooks/useField'
-import loginService from '../services/login'
 
-const LoginForm = () => {
-  const username = useField('text')
-  const password = useField('password')
-
-  const login = async (event) => {
-    event.preventDefault()
-    try {
-      await loginService.login(username.value, password.value)
-
-      console.log('LOGGED IN USER: ', username.value)
-
-      window.localStorage.setItem('loggedInUser', username.value)
-    } catch (exception) {
-      console.log('ERROR', exception.message)
-    }
-  }
+const LoginForm = (props) => {
+  const username = props.username
+  const password = props.password
 
   return (
     <div>
       <h3>Login</h3>
-      <form onSubmit={login}>
+      <form onSubmit={props.login}>
         <div>
           <label>username:</label>
           <input

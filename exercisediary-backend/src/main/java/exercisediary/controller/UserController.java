@@ -40,12 +40,12 @@ class UserController {
 
   // Aggregate root
 
-  @GetMapping("/api/users")
+  @GetMapping("/users")
   List<User> allUsers() {
     return userRepo.findAll();
   }
 
-  @PostMapping("/api/users")
+  @PostMapping("/register")
   User newUser(@RequestBody User newUser) {
     newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
     newUser.setRoles(new ArrayList<>());
@@ -55,13 +55,13 @@ class UserController {
 
   // Single item
 
-  @GetMapping("/api/users/{id}")
+  @GetMapping("/users/{id}")
   User oneUser(@PathVariable String id) {
     return userRepo.findById(id)
       .orElseThrow(() -> new UserNotFoundException(id));
   }
 
-  @PutMapping("/api/users/{id}")
+  @PutMapping("/users/{id}")
   User replaceUser(@RequestBody User newUser, @PathVariable String id) {
 
     return userRepo.findById(id)
@@ -78,7 +78,7 @@ class UserController {
       });
   }
 
-  @DeleteMapping("/api/users/{id}")
+  @DeleteMapping("/users/{id}")
   void deleteUser(@PathVariable String id) {
     userRepo.deleteById(id);
   } 

@@ -1,8 +1,18 @@
 import axios from 'axios'
-const baseUrl = '/api/exercises'
+const baseUrl = '/exercises'
+
+let token = null
+
+const setToken = (newToken) => {
+  token = newToken
+}
 
 const getAll = async () => {
-  const response = await axios.get(baseUrl)
+  const config = {
+    headers: { authorization: token }
+  }
+  
+  const response = await axios.get(baseUrl, config)
   return response.data
 }
 
@@ -26,4 +36,4 @@ const remove = async (objectToDelete) => {
   return response.data
 }
 
-export default { getAll, getOne, create, update, remove }
+export default { getAll, getOne, create, update, remove, setToken }

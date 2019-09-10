@@ -17,6 +17,7 @@
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/config/JwtAuthenticationFilter.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/exception/GymSetNotFoundException.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/exception/UserNotFoundAdvice.java
+/home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/controller/SecurityController.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/model/GymSet.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/service/UserService.java
 /home/alisa/fullstack-project/exercisediary-backend/src/main/java/exercisediary/exception/GymSetNotFoundAdvice.java
