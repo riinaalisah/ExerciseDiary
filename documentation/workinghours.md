@@ -12,4 +12,6 @@
 | 3.9. | 5 |  more user stuff |
 | 5.9. | 2,5 | more user stuff, first somehow working version |
 | 6.9. | 1 | registration and login stuff, they work! |
-| total | 32,5 |    |
+| 9.9 | 1,5 | login and token stuff |
+| 10.9. | 2 | more login and token stuff, works now somehow |
+| total | 36 |    |
