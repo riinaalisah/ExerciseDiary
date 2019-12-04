@@ -18,12 +18,13 @@ public class Workout {
   private String type;
   private Date date;
   private int duration;
-  @DBRef
   private List<GymSet> sets;
+  @DBRef
+  private User user;
 
-  Workout() {}
+  public Workout() {}
 
-  Workout(String type, Date date, int duration) {
+  public Workout(String type, Date date, int duration) {
     this.type = type;
     this.date = date;
     this.duration = duration;

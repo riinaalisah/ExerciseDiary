@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
   protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                           FilterChain filterChain, Authentication authentication) {
     var user = ((User) authentication.getPrincipal());
-
+    
     var roles = user.getAuthorities()
       .stream()
       .map(GrantedAuthority :: getAuthority)
@@ -59,6 +59,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
       .setExpiration(new Date(System.currentTimeMillis() + 864000000))
       .claim("rol", roles)
       .compact();
+
+    response.addHeader("id", user.getUsername());
 
     response.addHeader(SecurityConstants.TOKEN_HEADER, SecurityConstants.TOKEN_PREFIX + token);
   }

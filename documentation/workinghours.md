@@ -14,4 +14,6 @@
 | 6.9. | 1 | registration and login stuff, they work! |
 | 9.9 | 1,5 | login and token stuff |
 | 10.9. | 2 | more login and token stuff, works now somehow |
-| total | 36 |    |
+| 2.12. | 1,5 | refreshing own memory of the application, trying to do some tests |
+| 3.12. | 2  | still trying to figure out tests |
+| total | 39,5 |    |

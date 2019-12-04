@@ -21,7 +21,6 @@ exercisediary/model/GymSet.class
 exercisediary/controller/UserController.class
 exercisediary/config/SecurityConstants.class
 exercisediary/exception/ExerciseNotFoundAdvice.class
-exercisediary/controller/GymSetController.class
 exercisediary/repository/GymSetRepository.class
 exercisediary/exception/WorkoutNotFoundException.class
 exercisediary/repository/ExerciseRepository.class

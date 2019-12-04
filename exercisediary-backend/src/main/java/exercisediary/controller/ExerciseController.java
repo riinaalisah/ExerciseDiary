@@ -6,6 +6,7 @@ import exercisediary.repository.ExerciseRepository;
 import exercisediary.model.Exercise;
 import exercisediary.exception.ExerciseNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,36 +18,29 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @CrossOrigin
-class ExerciseController {
+public class ExerciseController {
 
-  private final ExerciseRepository repo;
-
-  ExerciseController(ExerciseRepository repo) {
-    this.repo = repo;
-  }
-
-  // Aggregate root
+  @Autowired
+  private ExerciseRepository repo;
 
   @GetMapping("/exercises")
-  List<Exercise> allExercises() {
+  public List<Exercise> allExercises() {
     return repo.findAll();
   }
 
   @PostMapping("/exercises")
-  Exercise newExercise(@RequestBody Exercise newExercise) {
+  public Exercise newExercise(@RequestBody Exercise newExercise) {
     return repo.save(newExercise);
   }
 
-  // Single item
-
   @GetMapping("/exercises/{id}")
-  Exercise oneExercise(@PathVariable String id) {
+  public Exercise oneExercise(@PathVariable String id) {
     return repo.findById(id)
       .orElseThrow(() -> new ExerciseNotFoundException(id));
   }
 
   @PutMapping("/exercises/{id}")
-  Exercise replaceExercise(@RequestBody Exercise newExercise, @PathVariable String id) {
+  public Exercise replaceExercise(@RequestBody Exercise newExercise, @PathVariable String id) {
 
     return repo.findById(id)
       .map(exercise -> {
@@ -61,7 +55,7 @@ class ExerciseController {
   }
 
   @DeleteMapping("/exercises/{id}")
-  void deleteExercise(@PathVariable String id) {
+  public void deleteExercise(@PathVariable String id) {
     repo.deleteById(id);
   }  
 }

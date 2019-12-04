@@ -1,3 +1,4 @@
+/*
 package exercisediary.controller;
 
 import java.util.List;
@@ -64,3 +65,4 @@ class GymSetController {
   }
 
 }
+*/

@@ -12,9 +12,9 @@ public class Role {
   private String id;
   private String role;
 
-  Role() {}
+  public Role() {}
 
-  Role(String role) {
+  public Role(String role) {
     this.role = role;
   }
 }

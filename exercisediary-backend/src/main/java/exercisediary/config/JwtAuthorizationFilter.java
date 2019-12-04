@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.util.StringUtils;
 
+import exercisediary.model.User;
+import exercisediary.service.CustomUserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -28,6 +32,7 @@ import java.util.List;
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
   private static final Logger log = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
+  
 
   public JwtAuthorizationFilter(AuthenticationManager authenticationManager) {
     super(authenticationManager);
@@ -56,7 +61,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
           .setSigningKey(signingKey)
           .parseClaimsJws(token.replace("Bearer ", ""));
 
-        var username = parsedToken
+        var id = parsedToken
           .getBody()
           .getSubject();
 
@@ -64,9 +69,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
           .get("rol")).stream()
           .map(authority -> new SimpleGrantedAuthority((String) authority))
           .collect(Collectors.toList());
-
-        if (!StringUtils.isEmpty(username)) {
-          return new UsernamePasswordAuthenticationToken(username, null, authorities);
+        
+        if (!StringUtils.isEmpty(id)) {
+          return new UsernamePasswordAuthenticationToken(id, null, authorities);
         }
       } catch (ExpiredJwtException exception) {
         log.warn("Request to parse expired JWT : {} failed : {}", token, exception.getMessage());

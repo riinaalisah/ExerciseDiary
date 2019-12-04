@@ -6,6 +6,7 @@ import exercisediary.exception.WorkoutNotFoundException;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,32 +18,29 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @CrossOrigin
-class WorkoutController {
+public class WorkoutController {
 
-  private final WorkoutRepository repo;
-
-  WorkoutController(WorkoutRepository repo) {
-    this.repo = repo;
-  }
+  @Autowired
+  private WorkoutRepository repo;
 
   @GetMapping("/workouts")
-  List<Workout> allWorkouts() {
+  public List<Workout> allWorkouts() {
     return repo.findAll();
   }
 
   @PostMapping("/workouts")
-  Workout newWorkout(@RequestBody Workout newWorkout) {
+  public Workout newWorkout(@RequestBody Workout newWorkout) {
     return repo.save(newWorkout);
   }
 
   @GetMapping("/workouts/{id}")
-  Workout oneWorkout(@PathVariable String id) {
+  public Workout oneWorkout(@PathVariable String id) {
     return repo.findById(id)
       .orElseThrow(() -> new WorkoutNotFoundException(id));
   }
 
   @PutMapping("/workouts/{id}")
-  Workout replaceWorkout(@RequestBody Workout newWorkout, @PathVariable String id) {
+  public Workout replaceWorkout(@RequestBody Workout newWorkout, @PathVariable String id) {
 
     return repo.findById(id) 
       .map(workout -> {
@@ -57,9 +55,8 @@ class WorkoutController {
   }
 
   @DeleteMapping("/workouts/{id}")
-  void deleteWorkout(@PathVariable String id) {
+  public void deleteWorkout(@PathVariable String id) {
     repo.deleteById(id);
   }
-  
 
 }

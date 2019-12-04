@@ -1,10 +1,15 @@
 package exercisediary.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import exercisediary.repository.RoleRepository;
 import exercisediary.repository.UserRepository;
+import exercisediary.service.CustomUserService;
+import exercisediary.service.UserService;
 import exercisediary.model.User;
 import exercisediary.exception.UserNotFoundException;
 
@@ -16,13 +21,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @CrossOrigin
-class UserController {
+public class UserController {
   
   @Autowired
   private UserRepository userRepo;
@@ -33,36 +40,33 @@ class UserController {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-  UserController(UserRepository userRepo) {
-    this.userRepo = userRepo;
+
+  public UserController() {
     this.passwordEncoder = new BCryptPasswordEncoder();
   }
 
-  // Aggregate root
 
   @GetMapping("/users")
-  List<User> allUsers() {
+  public List<User> allUsers() {
     return userRepo.findAll();
   }
 
   @PostMapping("/register")
-  User newUser(@RequestBody User newUser) {
+  public User newUser(@RequestBody User newUser) {
     newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
     newUser.setRoles(new ArrayList<>());
     newUser.getRoles().add(roleRepo.findByRole("USER"));
     return userRepo.save(newUser);
   }
 
-  // Single item
-
   @GetMapping("/users/{id}")
-  User oneUser(@PathVariable String id) {
+  public User oneUser(@PathVariable String id) {
     return userRepo.findById(id)
       .orElseThrow(() -> new UserNotFoundException(id));
   }
 
   @PutMapping("/users/{id}")
-  User replaceUser(@RequestBody User newUser, @PathVariable String id) {
+  public User replaceUser(@RequestBody User newUser, @PathVariable String id) {
 
     return userRepo.findById(id)
       .map(user -> {
@@ -79,7 +83,7 @@ class UserController {
   }
 
   @DeleteMapping("/users/{id}")
-  void deleteUser(@PathVariable String id) {
+  public void deleteUser(@PathVariable String id) {
     userRepo.deleteById(id);
   } 
 }

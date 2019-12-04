@@ -9,13 +9,14 @@ import org.springframework.data.annotation.Id;
 @Document(collection = "exercises")
 public class Exercise {
 
-  private @Id String id;
+  @Id
+  private String id;
   private String name;
   private int calsPerMinute;
 
-  Exercise() {}
+  public Exercise() {}
 
-  Exercise(String name, int calsPerMinute) {
+  public Exercise(String name, int calsPerMinute) {
     this.name = name;
     this.calsPerMinute = calsPerMinute;
   }

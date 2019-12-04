@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -33,20 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     http.cors().and()
         .csrf().disable()
         .authorizeRequests()
-          .antMatchers("/login", "/register").permitAll()
+          .antMatchers("/login", "/register", "/favicon**", "/users/**").permitAll()
           .anyRequest().anonymous()
           .and()
         .authorizeRequests()
-          .antMatchers("/exercises/**", "/workouts/**").permitAll()
+          .antMatchers("/exercises/*", "/workouts/*").permitAll()
           .anyRequest().authenticated()
           .and()
-          /*
-        .formLogin()
-          .loginPage("/login")
-          .permitAll()
-          .successHandler(successHandler())
-          .and()
-          */
         .addFilter(new JwtAuthenticationFilter(authenticationManager()))
         .addFilter(new JwtAuthorizationFilter(authenticationManager()))
         .sessionManagement()
@@ -70,13 +62,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 
     return source;
-  }
-
-  @Bean
-  public SavedRequestAwareAuthenticationSuccessHandler successHandler() {
-    SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
-    successHandler.setTargetUrlParameter("/loggedUser");
-    System.out.println("SUCCESS!!!" + successHandler);
-    return successHandler;
   }
 }

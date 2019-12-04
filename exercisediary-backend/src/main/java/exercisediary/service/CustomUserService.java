@@ -25,7 +25,8 @@ public class CustomUserService implements UserService, UserDetailsService {
   @Autowired
   private RoleRepository roleRepo;
 
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+  private BCryptPasswordEncoder passwordEncoder;
 
   @Override
   public UserDetails loadUserByUsername(String username) {
@@ -39,13 +40,12 @@ public class CustomUserService implements UserService, UserDetailsService {
     for (Role role : user.getRoles()) {
       grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
     }
-
-    return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+    return new org.springframework.security.core.userdetails.User(user.getId(), user.getPassword(), grantedAuthorities);
   }
 
   @Override
   public void save(User user) {
-    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
     user.setRoles(new ArrayList<>(roleRepo.findAll()));
     userRepo.save(user);
   }

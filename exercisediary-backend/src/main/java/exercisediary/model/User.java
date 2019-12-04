@@ -21,9 +21,9 @@ public class User {
   @DBRef
   private List<Role> roles;
 
-  User() {}
+  public User() {}
 
-  User(String username, String firstName, String lastName, String password) {
+  public User(String username, String firstName, String lastName, String password) {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
