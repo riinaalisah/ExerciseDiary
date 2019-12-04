@@ -50,16 +50,16 @@ const WorkoutForm = (props) => {
 
   const addWorkout = async (event)  => {
     event.preventDefault()
-    const setObjects = await Promise.all(props.sets.map(s => {
+    const setObjects = props.sets.map(s => {
       delete s.id
-      return setService.create(s)
-    }))
-
+      return s
+    })
     const newWorkout = {
       type: selected.label,
       date: date,
       duration: duration.value,
-      sets: setObjects
+      sets: setObjects,
+      user: props.user
     }
 
     try {
@@ -115,7 +115,8 @@ const WorkoutForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     exercises: state.exercises,
-    sets: state.sets
+    sets: state.sets,
+    user: state.loggedIn
   }
 }
 

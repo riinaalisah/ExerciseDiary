@@ -2,16 +2,20 @@ import axios from 'axios'
 const baseUrl = '/workouts'
 
 let token = null
+let config = null
 
 const setToken = (newToken) => {
   token = newToken
+  setConfig()
+}
+
+const setConfig = () => {
+  config = {
+    headers: { authorization: token }
+  }
 }
 
 const getAll = async () => {
-  const config = {
-    headers: { authorization: token }
-  }
-
   const response = await axios.get(baseUrl, config)
   return response.data
 }
@@ -22,7 +26,7 @@ const getOne = async (id) => {
 }
 
 const create = async (newObject) => {
-  const response = await axios.post(baseUrl, newObject)
+  const response = await axios.post(baseUrl, newObject, config)
   return response.data
 }
 

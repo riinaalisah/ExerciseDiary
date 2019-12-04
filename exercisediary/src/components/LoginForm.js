@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import Notification from './Notification'
 
 const LoginForm = (props) => {
   const username = props.username
@@ -6,6 +8,7 @@ const LoginForm = (props) => {
 
   return (
     <div>
+      <Notification type={props.notification.type} message={props.notification.message} />
       <h3>Login</h3>
       <form onSubmit={props.login}>
         <div>
@@ -30,4 +33,10 @@ const LoginForm = (props) => {
   )
 }
 
-export default LoginForm
+const mapStateToProps = (state) => {
+  return {
+    notification: state.notification
+  }
+}
+
+export default connect(mapStateToProps)(LoginForm)
