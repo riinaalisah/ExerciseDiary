@@ -1,6 +1,7 @@
 import React from 'react'
 import SuccessNotification from './SuccessNotification'
 import ErrorNotification from './ErrorNotification'
+import { Message } from 'semantic-ui-react';
 
 const Notification = (props) => {
   if (props.message === null) {
@@ -9,13 +10,17 @@ const Notification = (props) => {
 
   if (props.type === 'success') {
     return (
-      <SuccessNotification message={props.message} />
+      <Message positive>
+        <Message.Header>{props.message}</Message.Header>
+      </Message>
     )
   }
 
   if (props.type === 'error') {
     return (
-      <ErrorNotification message={props.message} />
+      <Message error>
+        <Message.Header>{props.message}</Message.Header>
+      </Message>
     )
   }
 

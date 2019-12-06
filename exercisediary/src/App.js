@@ -22,6 +22,7 @@ import exerciseService from './services/exercises'
 import workoutService from './services/workouts'
 import loginService from './services/login'
 import userService from'./services/users'
+import { Menu, Button } from 'semantic-ui-react';
 
 
 const App = (props) => {
@@ -84,8 +85,10 @@ const App = (props) => {
   const anonymousView = () => {
     return (
       <div>
-        <Link style={{ padding: 5 }} to='/login'>login</Link>
-        <Link style={{ padding: 5 }} to='/register'>register</Link>
+        <Menu>
+          <Menu.Item as={Link} to='/login'>Login</Menu.Item>
+          <Menu.Item as={Link} to='/register'>Register</Menu.Item>
+        </Menu>
      </div>
     )
   }
@@ -96,16 +99,17 @@ const App = (props) => {
         {props.loggedIn === null
           ? anonymousView()
           : <div>
-              <Link style={{ padding: 5 }} to='/exercises'>exercises</Link>
-              <Link style={{ padding: 5 }} to='/exercises/new'>create exercise</Link>
-              <Link style={{ padding: 5 }} to='/workouts/'>workouts</Link>
-              <Link style={{ padding: 5 }} to='/workouts/new'>add a workout</Link>
-              <button onClick={handleLogout}>log out</button>
-              <Date />
-              {props.loggedIn.username} logged in
+              <Menu>
+                <Menu.Item as={Link} to='/exercises'>Exercises</Menu.Item>
+                <Menu.Item as={Link} to='/exercises/new'>Create new exercises</Menu.Item>
+                <Menu.Item as={Link} to='/workouts'>Workouts</Menu.Item>
+                <Menu.Item as={Link} to='/workouts/new'>Add a workout</Menu.Item>
+                <Menu.Item><Date /></Menu.Item>
+                <Menu.Item>{props.loggedIn.username} logged in</Menu.Item>
+                <Menu.Item><Button onClick={handleLogout}>Logout</Button></Menu.Item>
+              </Menu>
             </div>
         }
-
         <div>
           <Route exact path='/exercises' render={() => 
             props.loggedIn ? <ExerciseList /> : <Redirect to='/login' /> } />

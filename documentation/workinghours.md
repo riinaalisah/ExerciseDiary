@@ -16,4 +16,6 @@
 | 10.9. | 2 | more login and token stuff, works now somehow |
 | 2.12. | 1,5 | refreshing own memory of the application, trying to do some tests |
 | 3.12. | 2  | still trying to figure out tests |
-| total | 39,5 |    |
+| 6.12. | 1  | UI edits (login, regiser, index) |
+| total | 40,5 |    |
+ 
