@@ -17,5 +17,6 @@
 | 2.12. | 1,5 | refreshing own memory of the application, trying to do some tests |
 | 3.12. | 2  | still trying to figure out tests |
 | 6.12. | 1  | UI edits (login, regiser, index) |
-| total | 40,5 |    |
+| 8.12. | 1 | UI edits, remove gym sets |
+| total | 41,5 |    |
  
