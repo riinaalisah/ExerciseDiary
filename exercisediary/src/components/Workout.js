@@ -18,15 +18,7 @@ const Workout = ({ workout }) => {
       <div>
         duration: {workout.duration} minutes
       </div>
-      { workout.type === 'Gym'
-        ? <div>
-            sets: {workout.sets.map(s => 
-              <div key={s.id}>
-                {s.move}, {s.sets} x {s.reps}, {s.weights}kg
-              </div>)}
-          </div>
-        : null
-      }
+      
     </div>
   )
 }

@@ -41,7 +41,6 @@ public class WorkoutController {
 
   @PutMapping("/workouts/{id}")
   public Workout replaceWorkout(@RequestBody Workout newWorkout, @PathVariable String id) {
-
     return repo.findById(id) 
       .map(workout -> {
         workout.setType(newWorkout.getType());

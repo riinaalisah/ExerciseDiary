@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 
@@ -104,9 +104,11 @@ const App = (props) => {
                 <Menu.Item as={Link} to='/exercises/new'>Create new exercises</Menu.Item>
                 <Menu.Item as={Link} to='/workouts'>Workouts</Menu.Item>
                 <Menu.Item as={Link} to='/workouts/new'>Add a workout</Menu.Item>
-                <Menu.Item><Date /></Menu.Item>
-                <Menu.Item>{props.loggedIn.username} logged in</Menu.Item>
-                <Menu.Item><Button onClick={handleLogout}>Logout</Button></Menu.Item>
+                <Menu.Menu position='right'>
+                  <Menu.Item><Date /></Menu.Item>
+                  <Menu.Item>{props.loggedIn.username} logged in</Menu.Item>
+                  <Menu.Item><Button onClick={handleLogout}>Logout</Button></Menu.Item>
+                </Menu.Menu>
               </Menu>
             </div>
         }

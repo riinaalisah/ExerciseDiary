@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useField } from '../hooks/useField'
 import { createExercise } from '../reducers/exerciseReducer'
+import { Grid, Header, Form, Input, Button } from 'semantic-ui-react';
 
 const ExerciseForm = (props) => {
   const name = useField('text')
@@ -26,26 +27,30 @@ const ExerciseForm = (props) => {
 
   return (
     <div>
-      <h2>Create a new exercise</h2>
-      <form onSubmit={createExercise}>
-        <div>
-          <label>Name of the exercise</label>
-          <input
-            type={name.type}
-            value={name.value}
-            onChange={name.onChange}
-          />
-        </div>
-        <div>
-          <label>Calories per minute</label>
-          <input
-            type={calories.type}
-            value={calories.value}
-            onChange={calories.onChange}
-          />
-        </div>
-        <button type='submit'>Create</button>
-      </form>
+      <Grid centered columns={3}>
+        <Grid.Column>
+          <Header as='h1'>Create a new exercise</Header>
+          <Form onSubmit={createExercise}>
+            <Form.Field>
+              <label>Name of the exercise</label>
+              <Input
+                type={name.type}
+                value={name.value}
+                onChange={name.onChange}>
+              </Input>
+            </Form.Field>
+            <Form.Field>
+              <label>Calories per minute</label>
+              <Input
+                type={calories.type}
+                value={calories.value}
+                onChange={calories.onChange}>
+              </Input>
+            </Form.Field>
+            <Button type='submit'>Create</Button>
+          </Form>
+        </Grid.Column>
+      </Grid>
     </div>
   )
 }

@@ -41,7 +41,6 @@ public class ExerciseController {
 
   @PutMapping("/exercises/{id}")
   public Exercise replaceExercise(@RequestBody Exercise newExercise, @PathVariable String id) {
-
     return repo.findById(id)
       .map(exercise -> {
         exercise.setName(newExercise.getName());

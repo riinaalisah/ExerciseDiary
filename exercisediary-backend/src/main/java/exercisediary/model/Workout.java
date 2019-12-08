@@ -18,7 +18,6 @@ public class Workout {
   private String type;
   private Date date;
   private int duration;
-  private List<GymSet> sets;
   @DBRef
   private User user;
 
